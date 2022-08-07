@@ -1,33 +1,51 @@
-var express = require('express');
-var path = require("path");
-var app = express();
-var PORT = 5501;
-// console.log(path.resolve("/public")); 
-// Single routing
-   
-// app.use(express.static("./Develop/public"));
-// app.get('/notes', function (req, res, next) {
-//     // res.send("hello");
-//     res.redirect("http://localhost:5501/notes.html");
-// })
-// app.use('/static', express.static('Develop'));
-// app.use(express.static('public'));
+const express = require('express');
+const path = require("path");
+const app = express();
+const PORT = 5502;
+const fs = require("fs");
 
-// app.use(express.json());
+//for browser when user is requesting something
 app.use(express.static('Develop/public'));
-app.get("/notes",(req,res,next)=>res.redirect("notes.html"));
+app.use(express.json());
 
-// app.use((req,res,next)=>res.redirect("notes.html"));
 
-// app.get("*",(req,res,next)=>res.send("aaaqqaa"));
 
- 
+app.get("/notes", (req, res, next) => res.sendFile(path.join(__dirname, "Develop/public/notes.html")));
+
+
+app.post("/api/notes", (req, res, next) => {
+ fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            // Convert string into JSON object
+            const notes = JSON.parse(data);
+            notes.push(req.body);
+            fs.writeFile('./Develop/api/notes.json', JSON.stringify(notes, null, 4),
+                        (writeErr) =>
+                          writeErr
+                            ? console.error(writeErr)
+                            : console.info('Successfully added TODOs!')
+                      );
+                    }
+                  });
+
+
+            res.send(req.body);
+
+
+            res.end()
+        }
+)
+
+app.get('/api/notes',(req,res)=>res.sendFile(
+    
+    path.join(__dirname, "Develop/api/notes.json")));
+
+
+
+
 app.listen(PORT, function(err){
     if (err) console.log(err);
     console.log("Server listening on PORT", PORT);
 });
-
-
-
-
-
