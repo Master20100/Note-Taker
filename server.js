@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require("path");
 var app = express();
-var PORT = 5500;
+var PORT = 5501;
 // console.log(path.resolve("/public")); 
 // Single routing
    
@@ -16,6 +16,7 @@ var PORT = 5500;
 // app.use(express.json());
 app.use(express.static('Develop/public'));
 app.get("/notes",(req,res,next)=>res.redirect("notes.html"));
+
 // app.use((req,res,next)=>res.redirect("notes.html"));
 
 // app.get("*",(req,res,next)=>res.send("aaaqqaa"));
@@ -25,3 +26,8 @@ app.listen(PORT, function(err){
     if (err) console.log(err);
     console.log("Server listening on PORT", PORT);
 });
+
+
+
+
+
