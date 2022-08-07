@@ -5,7 +5,7 @@ var PORT = 5500;
 // console.log(path.resolve("/public")); 
 // Single routing
    
-app.use(express.static("./Develop/public"));
+// app.use(express.static("./Develop/public"));
 // app.get('/notes', function (req, res, next) {
 //     // res.send("hello");
 //     res.redirect("http://localhost:5501/notes.html");
