@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const PORT = 5502;
+const PORT = process.env.PORT || 3001;
 const fs = require('fs');
 const app = express();
 // Helper method for generating unique ids
