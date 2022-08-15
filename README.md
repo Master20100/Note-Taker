@@ -15,6 +15,8 @@ WHEN I click on an existing note in the list in the left-hand column
 THEN that note appears in the right-hand column
 WHEN I click on the Write icon in the navigation at the top of the page
 THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
+WHEN I click on delete icon beside the note
+THEN I am presented with all the notes except for the deleted ones. 
 
 In depth:-
 First, the user opens the webpage called note taker then once clicks on get started. Once he clicks, a fetch GET call is made 
@@ -26,6 +28,8 @@ Then the user enters title of the note and note text(ToDo). Once both fields do 
 the save button appears. 
 
 Once save button is clicked, a fetch POST call is made and is caught by express post route that take the new note, the title and generates an id then converts the 3 to js object and at the same time, checks if there are any notes available in the notes.json file then converts it to js object and add the new note as a new object then change all the notes to json file to be stored again in the notes.json
+
+If a user wants to delete a note, he clicks on the bin icon beside the note. This will make a fetch call delete that would read the id of the note to be deleted. notes.json is converted to js object then a filter function is run on every note id stored to remove the node with the same id, once removed, a new note array is created than is stringified and put inside the notes.json fle.
 
 A default route is created for any other traffic. This route directs the user to the index.html page(start page of the application).
 
