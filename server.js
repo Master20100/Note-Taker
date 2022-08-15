@@ -55,7 +55,6 @@ app.delete('/api/notes/:id', (req, res) => {
       console.error(err);
     } else {
       const notes = JSON.parse(data);
-      console.log(idDelete);
       const result = notes.filter((note) => note.id !== idDelete);
       fs.writeFile('./Develop/api/notes.json', JSON.stringify(result), (writeErr) =>
         writeErr
