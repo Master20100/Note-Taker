@@ -13,12 +13,8 @@ app.use(express.static('Develop/public'));
 app.use(express.json());
 
 
-
 app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "Develop/public/notes.html")));
 
-
-//app.get
-//router.get for children elements
 
 app.post("/api/notes", (req, res) => {
   fs.readFile('./Develop/api/notes.json', 'utf8', (err, data) => {
